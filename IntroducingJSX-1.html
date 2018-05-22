@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div id="root2"></div>
+
+
+<script type= "text/babel">
+
+const name= 'Asif Mahmud';
+const element1 = <h1>Hello brother, {name} !!</h1>;
+const element2 = <h1>You are not my Brother, {name} !!</h1>;
+ReactDOM.render(
+  element1,
+  document.getElementById('root')
+);
+
+ReactDOM.render(
+  element2,
+  document.getElementById('root2')
+);
+</script>
+</body>
+</html>
