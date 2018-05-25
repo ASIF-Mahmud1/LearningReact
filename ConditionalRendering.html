@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type= "text/babel">
+function AlreadyUser(props)
+{
+  return <h1>Welcome Back </h1>;
+}
+function NewUser(props)
+{
+  return <h1>This is your New Home</h1>;
+}
+
+function HowIWillGreetYou(props)
+{
+  const isloggedin= props.isloggedin;
+  if(isloggedin)
+  {
+    return <AlreadyUser />;
+  }
+  else
+  {
+    return <NewUser />;
+  }
+}
+ReactDOM.render(
+  <HowIWillGreetYou isloggedin={true} />,
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>
