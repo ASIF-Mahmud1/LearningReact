@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type= "text/babel">
+class FavouriteArist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: 'Mark Tremonti'};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('Your Favourite Artist is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Select Your Favourite Artist From the List:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="Nusrat Fateh Ali Khan">Nusrat Fateh Ali Khan</option>
+            <option value="Myles Keneddy">Myles Keneddy</option>
+            <option value="Mark Tremonti">Mark Tremonti</option>
+            <option value="Shahrukh Khan">Shahrukh Khan</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(
+  <FavouriteArist />,
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>
