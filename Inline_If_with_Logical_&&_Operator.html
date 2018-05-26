@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type= "text/babel">
+function Mailbox(messages) {
+  const unreadMessages = messages.unreadMessages;
+  return (
+    <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+          <h2>From..</h2>
+          <ul>
+          <li key= {unreadMessages.toString()}>{unreadMessages[0]}</li>
+          <li key= {unreadMessages.toString()}>{unreadMessages[1]}</li>
+          <li key= {unreadMessages.toString()}>{unreadMessages[2]}</li>
+          </ul>
+        </h2>
+      }
+      {unreadMessages.length == 0 &&
+        <h2>
+        You Have Read All messages.
+        </h2>
+      }
+    </div>
+  );
+}
+
+const messages = ['Fish', 'Cat', 'Tomato'];
+const messages2 = [];
+
+ReactDOM.render(
+  <Mailbox unreadMessages={messages} />,
+  document.getElementById('root')
+);
+
+
+</script>
+</body>
+</html>
