@@ -40,15 +40,16 @@ class AgeInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {myage: ''};
+
   }
 
   handleChange(e) {
-    this.setState({myage: e.target.value});
+    this.props.onAgeChange(e.target.value);
   }
 
   render() {
-    const myage = this.state.myage;
+    // temperatue-- myage scale-- convertAge
+    const myage = this.props.myage;
     const convertAge = this.props.convertAge;
     return (
       <fieldset>
@@ -62,19 +63,57 @@ class AgeInput extends React.Component {
 
 function AmIAlive(props) {
   if (props.age >= 100) {
-    return <p>As per the trend I should be Dead by now.</p>;
+    return <p>As per the trend You should be Dead by now.</p>;
+  }
+  else if(props.age < 0)
+  {
+    return <p>You Lived {-props.age} years back!. Maybe now I am having a converstion with a Ghost!! RIP </p>;
+  }
+  else if(props.age == 0)
+  {
+    return <p>Congratulation You have just Born !! </p>;
   }
   return <p>You are Alive.</p>;
 }
 
 class CalculateAge extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.handleYearChange = this.handleYearChange.bind(this);
+    this.handleSecondsChange = this.handleSecondsChange.bind(this);
+    this.state = {myage: '', convertAge: 'y'};
+  }
+  handleYearChange(myage)
+  {
+     this.setState({convertAge: 'y', myage});
+  }
+  handleSecondsChange(myage)
+  {
+       this.setState({convertAge: 's', myage});
+  }
+
+    render() {
+    const convertAge = this.state.convertAge;
+    const myage = this.state.myage;
+    const years = convertAge === 's' ? tryConvert(myage,ToYears) : myage;
+    const seconds = convertAge === 'y' ? tryConvert(myage, ToSeconds) : myage;
     return (
-      <div>
-        <AgeInput convertAge="y" />
-          <AgeInput convertAge="s" />
-      </div>
-    );
+          <div>
+            <AgeInput
+              convertAge="y"
+              myage={years}
+              onAgeChange={this.handleYearChange} />
+
+              <AgeInput
+                convertAge="s"
+                myage={seconds}
+                onAgeChange={this.handleSecondsChange} />
+
+            <AmIAlive
+              age={parseFloat(years)} />
+
+          </div>
+        );
   }
 }
 
