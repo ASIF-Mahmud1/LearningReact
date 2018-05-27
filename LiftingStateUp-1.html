@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type= "text/babel">
+
+const AgeConversion = {
+  y: 'years',
+  s: 'seconds'
+};
+
+function ToYears(seconds)
+{
+  return seconds/(365*24*60*60) ;
+}
+function ToSeconds(years)
+{
+  return years*(365*24*60*60) ;
+}
+
+function tryConvert(age, convert) {
+  const input = parseFloat(age);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+class AgeInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {myage: ''};
+  }
+
+  handleChange(e) {
+    this.setState({myage: e.target.value});
+  }
+
+  render() {
+    const myage = this.state.myage;
+    const convertAge = this.props.convertAge;
+    return (
+      <fieldset>
+        <legend>Enter Age in {AgeConversion[convertAge]}:</legend>
+        <input value={myage}
+               onChange={this.handleChange} />
+      </fieldset>
+    );
+  }
+}
+
+function AmIAlive(props) {
+  if (props.age >= 100) {
+    return <p>As per the trend I should be Dead by now.</p>;
+  }
+  return <p>You are Alive.</p>;
+}
+
+class CalculateAge extends React.Component {
+  render() {
+    return (
+      <div>
+        <AgeInput convertAge="y" />
+          <AgeInput convertAge="s" />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <CalculateAge />,
+
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>
