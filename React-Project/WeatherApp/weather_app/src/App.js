@@ -15,8 +15,19 @@ const API_KEY= "5861748ed78df9b9f8cb36bf60f270a5";
 
 //getWeather is to request API call
 //const data- It converts the data from "api_call" to JSON data
-//Send the "getWeather" to the "Form" Component so that it gets triggered when onSubmit is triggered
+//Send the "getWeather" to the "Form" Component so that it gets triggered when onSubmit is called
+// Question : How do the getWeather functions this will be called on Form component (city, country), and not in any other component
 class App extends React.Component{
+  // defining state
+  state= {
+    city: undefined,
+    country: undefined,
+    humidity:undefined,
+    description:undefined,
+    temperature: undefined,
+    error:undefined
+  }
+
   getWeather= async(e)=>{
     e.preventDefault();
     const city= e.target.elements.city.value;
@@ -25,16 +36,48 @@ class App extends React.Component{
     const api_call= await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
 
+    if(city && country)
+    {
+      this.setState({
+        city: data.name,
+        country: data.sys.country,
+        humidity:data.main.humidity,
+        description:data.weather[0].description,
+        temperature: data.main.temp,
+        error:""
+      });
+      console.log(data);
+    }
+    else
+    {
+      this.setState({
+        city: undefined,
+        country: undefined,
+        humidity:undefined,
+        description:undefined,
+        temperature: undefined,
+        error:"Please Enter Correct City and Country "
+
+      });
+    }
 
 
-    console.log(data);
   }
   render(){
     return(
       <div>
          <Titles />
          <Form getweather= {this.getWeather} />
-         <WeatherComponent />
+
+         <WeatherComponent
+           city= {this.state.city}
+           country= {this.state.country}
+           humidity= {this.state.humidity}
+           description= {this.state.description}
+           temperature= {this.state.temperature}
+           error= {this.state.error}
+
+         />
       </div>
     );
   }
