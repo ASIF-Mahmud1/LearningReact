@@ -40,7 +40,7 @@ class App extends React.Component{
 
      });
      console.log(AvailableItems[i]);
-     
+
    }
    else if(items=== AvailableItems[i].name)
    {
@@ -77,7 +77,7 @@ class App extends React.Component{
         />
         <SearchBar getItem= {this.getItem} />
         <ProductTable />
-        <ProductCategoryRow />
+        <ProductCategoryRow type/>
         <ProductRow />
     </div>
     );
