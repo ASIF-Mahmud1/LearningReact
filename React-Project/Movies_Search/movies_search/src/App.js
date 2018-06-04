@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import MovieRow from "./MovieRow";
 import './App.css';
 
 class App extends Component {
@@ -7,11 +7,13 @@ class App extends Component {
     super(props)
     console.log("This is My initializer")
     const  movies= [
-             {id: 0, title: "Aandaz Apana Apna", overview:"Great Movie"},
-             {id:1, title: "Batman Begins", overview: "I Liked the portrayal of how Batman evolved "},
-             {id:2, title:"Kal Ho na Ho", overview:"Shahrukh Khan is the sole reason you need to like a Movie "}
+             {id: 0, poster_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAQ9Pz0gPjHSquZUQv_MpcQrJV-5ttd2b7xFTo7BwNZsJcYBSK",  title: "Aandaz Apana Apna", overview:"Great Movie"},
+             {id:1, poster_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7GxKaPOoKSl4Qki0fNKjr_YTMXAfemOSFjaAwZMMflbr341FxLg", title: "Batman Begins", overview: "I Liked the portrayal of how Batman evolved "},
+             {id:2,  poster_src: "https://i.ebayimg.com/images/g/IuYAAOSwpkFY701s/s-l300.jpg", title:"Kal Ho na Ho", overview:"Shahrukh Khan is the sole reason you need to like a Movie "}
 
            ]
+
+  // "this.state" is rendundant here
     this.state= {
 
       row : [
@@ -25,11 +27,15 @@ class App extends Component {
     }
     // So that I can show Movie names to the browser
     const movie_rows=[]
+
     //Looping through Array
     // Maybe I can use it in Product Project
     movies.forEach((show)=>{
     console.log(show.title)
-    movie_rows.push(<p key={show.id}>movie title : {show.title}</p>)
+    const movie_Row= <MovieRow show= {show}/>
+    // Making a table to show movie poster and movie details
+
+    movie_rows.push(movie_Row)
     }
 
     )
@@ -37,7 +43,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="">
         <table style={{
           backgroundColor: '#000',
           display: 'block',
