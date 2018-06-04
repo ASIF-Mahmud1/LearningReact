@@ -26,6 +26,7 @@ class App extends Component {
     // So that I can show Movie names to the browser
     const movie_rows=[]
     //Looping through Array
+    // Maybe I can use it in Product Project
     movies.forEach((show)=>{
     console.log(show.title)
     movie_rows.push(<p key={show.id}>movie title : {show.title}</p>)

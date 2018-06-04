@@ -8,11 +8,11 @@ import ProductCategoryRow from "./Components/ProductCategoryRow";
 import ProductRow from "./Components/ProductRow";
 //Initialize Component
 var AvailableItems= [
-  {type:"electronics", name:"computer", price:5000,},
-   {type:"electronics", name:"printer", price:1000,},
-    {type:"jwels", name:"diamond-ring", price:90000,},
-      {type:"clothes", name:"Sweat Pants", price:200,},
-        {type:"food", name:"Cereals", price:10,}
+  {type:"electronics", name:"computer", price:5000},
+   {type:"electronics", name:"printer", price:1000},
+    {type:"jwels", name:"diamond-ring", price:90000},
+      {type:"clothes", name:"Sweat Pants", price:200},
+        {type:"food", name:"Cereals", price:10}
                  ];
   var length= AvailableItems.length;
 
@@ -40,6 +40,7 @@ class App extends React.Component{
 
      });
      console.log(AvailableItems[i]);
+     return;
 
    }
    else if(items=== AvailableItems[i].name)
@@ -52,6 +53,7 @@ class App extends React.Component{
 
      });
      console.log(AvailableItems[i]);
+      return;
    }
    else
    {
@@ -77,7 +79,7 @@ class App extends React.Component{
         />
         <SearchBar getItem= {this.getItem} />
         <ProductTable />
-        <ProductCategoryRow type/>
+        <ProductCategoryRow type={this.state.type} name= {this.state.name} price={this.state.price} />
         <ProductRow />
     </div>
     );
