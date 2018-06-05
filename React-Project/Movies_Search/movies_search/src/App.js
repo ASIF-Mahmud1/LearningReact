@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MovieRow from "./MovieRow";
 import './App.css';
-
 class App extends Component {
   constructor(props){
     super(props)
@@ -12,7 +11,6 @@ class App extends Component {
              {id:2,  poster_src: "https://i.ebayimg.com/images/g/IuYAAOSwpkFY701s/s-l300.jpg", title:"Kal Ho na Ho", overview:"Shahrukh Khan is the sole reason you need to like a Movie "}
 
            ]
-
   // "this.state" is rendundant here
     this.state= {
 
