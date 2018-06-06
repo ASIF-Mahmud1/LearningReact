@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import MovieRow from "./MovieRow";
 import './App.css';
+import $ from 'jquery'
 class App extends Component {
   constructor(props){
     super(props)
-    console.log("This is My initializer")
+    this.state= {}
+/* console.log("This is My initializer")
     const  movies= [
              {id: 0, poster_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAQ9Pz0gPjHSquZUQv_MpcQrJV-5ttd2b7xFTo7BwNZsJcYBSK",  title: "Aandaz Apana Apna", overview:"Great Movie"},
              {id:1, poster_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7GxKaPOoKSl4Qki0fNKjr_YTMXAfemOSFjaAwZMMflbr341FxLg", title: "Batman Begins", overview: "I Liked the portrayal of how Batman evolved "},
@@ -38,6 +40,35 @@ class App extends Component {
 
     )
     this.state= {row: movie_rows}
+     */
+     this.performSearch()
+  }
+  // Very Inportant : Analyse how jquery is used to make ajax call
+  performSearch(){
+    console.log("perform Search using Movie DB");
+    const urlString= "https://api.themoviedb.org/3/search/movie?api_key=b1b750c3cd19d76b8e1dff3323603e5f&language=en-US&query=marvel&page=1&include_adult=false"
+    $.ajax({
+         url : urlString,
+         success: (searchResults) =>{
+           console.log("Fetched data successfully")
+           console.log(searchResults)
+        //    console.log(searchResults.results)
+          const movie_rows=[]
+            const result= searchResults.results
+            result.forEach((show)=>{
+              show.poster_src=
+              console.log(show.title)
+            //    console.log(show.overview)
+              const movie_Row= <MovieRow key={show.id} show={show} />
+              movie_rows.push(movie_Row)
+            }
+          )
+          this.setState({row: movie_rows})
+         },
+         error: (xhr, status,err)=>{
+
+         }
+    })
   }
   render() {
     return (
