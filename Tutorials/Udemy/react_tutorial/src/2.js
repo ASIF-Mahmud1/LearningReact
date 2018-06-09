@@ -55,15 +55,15 @@ const app2= {
 }
 // It is used to check if option.length>0
 const app3= {
-  title : "My Title",
-  subtitle : "This is my Sub-Title",
+  title : "Indecison App",
+  subtitle : "Put your life in the hand of Computer",
   option : []
 
 }
 
 // It is used to check to Check Both task above
 const app4= {
-  title : "My Title",
+  title : "Indecison App",
   subtitle : undefined,
   option : []
 }
@@ -87,7 +87,7 @@ class App extends Component {
         </header>
         <header>
           <Template2 user= {user5} getLocation= {getLocation(user5.location)} />
-          <Template1 app= {app4}/>
+          <Template1 app= {app3}/>
         </header>
       </div>
     );
