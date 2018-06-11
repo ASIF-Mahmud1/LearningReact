@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 
-import Template4 from "./Components/3/Template4"
+import Counter from "./Components/3/Counter"
  /*
 // App obkect
 const app= {
@@ -52,7 +52,7 @@ class App extends Component {
         <header className="">
         </header>
         <header>
-          <Template4 count= {this.count}/>
+          <Counter />
         </header>
 
       </div>
