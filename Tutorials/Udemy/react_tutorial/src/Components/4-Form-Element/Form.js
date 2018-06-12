@@ -19,7 +19,7 @@ class Form extends React.Component{
                                                             event.target is the response to the element that triggered the events
                                                             which in this case is "Form" element
                                                             event.target.elements : gives us access to all the elements inside our form-
-                                                            in this case "option". And elements are indexed by attribute "name"
+                                                            in this case "wrote". And elements are indexed by attribute "name"
                                                             so we can fetch data from "name" attribute
                                                             So this is the story in nut-shell
                                                            */
@@ -40,7 +40,14 @@ class Form extends React.Component{
 
   render(){
     return(
+      <div>
        <div>I am a Cow</div>
+       <form onSubmit= {this.afterButtonClicked}>
+         <input type="text" name= "wrote"/>
+
+         <button>Add Option</button>
+       </form>
+      </div>
     )
   }
 }
