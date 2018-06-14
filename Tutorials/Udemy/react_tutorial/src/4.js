@@ -13,27 +13,7 @@ const app= {
   option : []
 
 }
-// It is used to check if subtitle exists
-const app2= {
-  title : "My Title",
-  subtitle : undefined,
-  option : ['One', 'Two', 'Three']
 
-}
-// It is used to check if option.length>0
-const app3= {
-  title : "Indecison App",
-  subtitle : "Put your life in the hand of Computer",
-  option : []
-
-}
-
-// It is used to check to Check Both task above
-const app4= {
-  title : "Indecison App",
-  subtitle : undefined,
-  option : []
-}
 
 /* this arrow function is going to be called  with an event object -"event". You can tell it anything!! */
 /* It contains various info about the event */
