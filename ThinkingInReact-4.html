@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type= "text/babel">
+
+class FilterableProductTable extends React.Component{
+
+  constructor(props){
+    super(props)
+  }
+  render(){
+    return(
+      <div>
+       <h1>Filterable Product Table !!</h1>
+       <SearchBar />
+       <ProductTable product= {this.props.product}/>
+      </div>
+    )
+  }
+}
+
+
+class SearchBar extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    return(
+      <label>
+          Search:
+          <input type="text" placeholder="Enter Items"/>
+      </label>
+    )
+  }
+}
+
+class ProductTable extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    let arr=[]
+    let i=0
+    let truth= "true"
+    let flse= "false"
+ this.props.product.forEach((product)=>{
+   if(product.stocked===true){
+     arr.push(
+       <tr key={i}><td > <pre>    {product.name}  {product.category}  {product.price}   {truth}</pre> </td></tr>
+
+     )
+     i++
+   }
+   else{
+     arr.push(
+       <tr key={i}><td > <pre>    {product.name}  {product.category}  {product.price}   {flse}</pre> </td></tr>
+
+     )
+     i++
+   }
+
+ })
+
+    return(
+      <table>
+         <thead >
+           <tr>
+             <td><pre>      Name     Category   Price   Stocked</pre></td>
+
+           </tr>
+         </thead>
+         <tbody>{arr}</tbody>
+       </table>
+    )
+  }
+
+}
+
+const Products= [
+  {category:"sports" , price:20 , stocked :true , name:"Football" } ,
+  {category: "electronics" , price:10 , stocked :true , name:"Smart Phone" } ,
+  {category:"random" , price:60 , stocked : false , name: "Paper" } ,
+  {category:"sports" , price:60 , stocked : false , name: "Skipping Ropes" } ,
+  {category:"random" , price:60 , stocked : false , name: "Clothes" } ,
+  {category:"sports" , price:60 , stocked : false , name: "Hockey Stick" } ,
+
+  {category:"electronics" , price:40 , stocked :false , name:"watch" } ,
+  {category:"electronics" , price:30 , stocked : true, name:"PC" }
+]
+ReactDOM.render(
+   <FilterableProductTable product= {Products} />,
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>
