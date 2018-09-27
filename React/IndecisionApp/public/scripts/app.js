@@ -5,7 +5,7 @@ console.log('App is running');
 var template = React.createElement(
   'p',
   null,
-  'InDecision App!'
+  'InDecision Application!'
 );
 
 var appRoot = document.getElementById('app');
