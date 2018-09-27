@@ -18,19 +18,29 @@ var subtitle="This is Some Info" ;
    name: "Monu" ,
    age: 0,
    locat:" NeverLand",
-
  }
- var name= "Asif Mahmud";
- var age= 23;
- var locat="Dhaka SA";
+ var user2={
+   name: "Chonu" ,
+   age: 10,
+ }
+ //var name= "Asif Mahmud";
+// var age= 23;
+ //var locat="Dhaka SA";
+ function getLocation(user)
+ {
+   if(user.locat)
+   {
+     return<p>I am From {user.locat}</p>;
+   }
+ }
  var template2= (
    <div>
-     <h1>My Name is {user.name}</h1>
-     <p>I am {user.age} years old</p>
-     <p>I am From {user.locat}</p>
+     <h1>{user2.name ? "My Name is "+user2.name : 'I dont know his/her Name'}</h1>
+     <p>I am {user2.age} years old</p>
+     {getLocation(user2)}
 
    </div>
  );
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(template2, appRoot);

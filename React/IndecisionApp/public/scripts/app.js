@@ -42,34 +42,40 @@ var user = {
   name: "Monu",
   age: 0,
   locat: " NeverLand"
-
 };
-var name = "Asif Mahmud";
-var age = 23;
-var locat = "Dhaka SA";
+var user2 = {
+  name: "Chonu",
+  age: 10
+  //var name= "Asif Mahmud";
+  // var age= 23;
+  //var locat="Dhaka SA";
+};function getLocation(user) {
+  if (user.locat) {
+    return React.createElement(
+      "p",
+      null,
+      "I am From ",
+      user.locat
+    );
+  }
+}
 var template2 = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "My Name is ",
-    user.name
+    user2.name ? "My Name is " + user2.name : 'I dont know his/her Name'
   ),
   React.createElement(
     "p",
     null,
     "I am ",
-    user.age,
+    user2.age,
     " years old"
   ),
-  React.createElement(
-    "p",
-    null,
-    "I am From ",
-    user.locat
-  )
+  getLocation(user2)
 );
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(template2, appRoot);
