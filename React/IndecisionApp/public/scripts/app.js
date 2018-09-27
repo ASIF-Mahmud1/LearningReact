@@ -2,18 +2,21 @@
 
 console.log("App is running");
 // JSX - JavaScript XML
+var title = "Indecision App ";
+var subtitle = "This is Some Info";
+
 var template = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "InDecision Application!"
+    title
   ),
   React.createElement(
     "p",
     null,
-    "This is some Info"
+    subtitle
   ),
   React.createElement(
     "ol",
@@ -35,26 +38,36 @@ var template = React.createElement(
     )
   )
 );
-var name = "as";
-var age = "sd";
-var location = "sd";
+var user = {
+  name: "Monu",
+  age: 0,
+  locat: " NeverLand"
+
+};
+var name = "Asif Mahmud";
+var age = 23;
+var locat = "Dhaka SA";
 var template2 = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    name
+    "My Name is ",
+    user.name
   ),
   React.createElement(
     "p",
     null,
-    age
+    "I am ",
+    user.age,
+    " years old"
   ),
   React.createElement(
     "p",
     null,
-    location
+    "I am From ",
+    user.locat
   )
 );
 var appRoot = document.getElementById('app');
