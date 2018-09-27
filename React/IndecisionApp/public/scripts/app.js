@@ -2,8 +2,12 @@
 
 console.log("App is running");
 // JSX - JavaScript XML
-var title = "Indecision App ";
-var subtitle = "This is Some Info";
+
+var app = {
+  title: "Indecision App ",
+  subtitle: "This is Some Info- Subtitle",
+  options: ["one", "two", "three"]
+};
 
 var template = React.createElement(
   "div",
@@ -11,12 +15,17 @@ var template = React.createElement(
   React.createElement(
     "h1",
     null,
-    title
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    "p",
+    null,
+    app.subtitle
   ),
   React.createElement(
     "p",
     null,
-    subtitle
+    app.options.length > 0 ? "Here are your options" : "No Options"
   ),
   React.createElement(
     "ol",
@@ -40,12 +49,12 @@ var template = React.createElement(
 );
 var user = {
   name: "Monu",
-  age: 0,
+  age: 100,
   locat: " NeverLand"
 };
 var user2 = {
   name: "Chonu",
-  age: 10
+  age: 19
   //var name= "Asif Mahmud";
   // var age= 23;
   //var locat="Dhaka SA";
@@ -65,17 +74,17 @@ var template2 = React.createElement(
   React.createElement(
     "h1",
     null,
-    user2.name ? "My Name is " + user2.name : 'I dont know his/her Name'
+    user.name ? "My Name is " + user.name : 'I dont know his/her Name'
   ),
-  React.createElement(
+  user.age > 15 && React.createElement(
     "p",
     null,
     "I am ",
-    user2.age,
-    " years old"
+    user.age,
+    " years old "
   ),
-  getLocation(user2)
+  getLocation(user)
 );
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template2, appRoot);
+ReactDOM.render(template, appRoot);
