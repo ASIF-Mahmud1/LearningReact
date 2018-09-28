@@ -19,33 +19,30 @@ const app= {
      </ol>
    </div>
  );
- const user={
-   name: "Monu" ,
-   age: 100,
-   locat:" NeverLand",
- }
- const user2={
-   name: "Chonu" ,
-   age: 19
- }
- //var name= "Asif Mahmud";
-// var age= 23;
- //var locat="Dhaka SA";
- function getLocation(user)
- {
-   if(user.locat)
-   {
-     return<p>I am From {user.locat}</p>;
-   }
- }
- const template2= (
-   <div>
-     <h1>{user.name ? "My Name is "+user.name : 'I dont know his/her Name'}</h1>
-     {user.age>15 &&  <p>I am {user.age} years old </p> }
-     {getLocation(user)}
 
+let counter =0;
+
+const addOne=(counter)=>{
+console.log('addOne');
+}
+
+const minusOne=()=>{
+  console.log("minusOne");
+}
+
+const reset=()=>{
+  console.log('reset');
+}
+
+ const template2=(
+   <div>
+     <h1>Count: {counter}</h1>
+     <button onClick={addOne}> +1 </button>
+     <button onClick={minusOne}> -1 </button>
+     <button onClick={reset}> Reset </button>
    </div>
  );
+
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(template2, appRoot);
