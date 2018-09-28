@@ -1,30 +1,39 @@
 'use strict';
 
-/*
-const cube= function(x)
-{
-  return x*x*x;
-};
-const cubeArrow= (x)=>{
-  return x*x*x;
-};
-console.log("Number is "+cubeArrow(2));
-*/
+// arguments object - no longer bound with arrow functions
 
-// Arrow Function
-var firstNameArrow = function firstNameArrow(fullName) {
-  if (fullName) {
-    return fullName.split(' ')[0];
+var add = function add(a, b) {
+  // console.log(arguments);
+  return a + b;
+};
+console.log(add(55, 1, 1001));
+
+// this keyword - no longer bound
+
+var user = {
+  name: 'Andrew',
+  cities: ['Philadelphia', 'New York', 'Dublin'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
+
+    return this.cities.map(function (city) {
+      return _this.name + ' has lived in ' + city;
+    });
+  }
+};
+console.log(user.printPlacesLived());
+
+// Challenge area
+var multiplier = {
+  numbers: [1, 2, 3, 4, 5],
+  multiplyBy: 2,
+  multiply: function multiply() {
+    var _this2 = this;
+
+    return this.numbers.map(function (num) {
+      return num * _this2.multiplyBy;
+    });
   }
 };
 
-// Arrow Function ShortHand Syntax
-var firstNameArrowShortHand = function firstNameArrowShortHand(fullName) {
-  return fullName.split(' ')[0];
-};
-///////////////////
-var fullName = "Asif Mahmud Mofo";
-
-console.log("First Name is " + firstNameArrow(fullName) + " (From Arrow Function)");
-
-console.log("First Name is " + firstNameArrow(fullName) + " (From Arrow Function- ShortHand Notation)");
+console.log(multiplier.multiply());
