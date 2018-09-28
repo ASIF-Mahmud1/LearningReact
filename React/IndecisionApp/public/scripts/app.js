@@ -1,90 +1,30 @@
-"use strict";
+'use strict';
 
-console.log("App is running");
-// JSX - JavaScript XML
-
-var app = {
-  title: "Indecision App ",
-  subtitle: "This is Some Info- Subtitle",
-  options: ["one", "two", "three"]
+/*
+const cube= function(x)
+{
+  return x*x*x;
 };
-
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    "p",
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    "p",
-    null,
-    app.options.length > 0 ? "Here are your options" : "No Options"
-  ),
-  React.createElement(
-    "ol",
-    null,
-    React.createElement(
-      "li",
-      null,
-      "Item 1"
-    ),
-    React.createElement(
-      "li",
-      null,
-      "Item 2"
-    ),
-    React.createElement(
-      "li",
-      null,
-      "Item 3"
-    )
-  )
-);
-var user = {
-  name: "Monu",
-  age: 100,
-  locat: " NeverLand"
+const cubeArrow= (x)=>{
+  return x*x*x;
 };
-var user2 = {
-  name: "Chonu",
-  age: 19
-  //var name= "Asif Mahmud";
-  // var age= 23;
-  //var locat="Dhaka SA";
-};function getLocation(user) {
-  if (user.locat) {
-    return React.createElement(
-      "p",
-      null,
-      "I am From ",
-      user.locat
-    );
+console.log("Number is "+cubeArrow(2));
+*/
+
+// Arrow Function
+var firstNameArrow = function firstNameArrow(fullName) {
+  if (fullName) {
+    return fullName.split(' ')[0];
   }
-}
-var template2 = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    user.name ? "My Name is " + user.name : 'I dont know his/her Name'
-  ),
-  user.age > 15 && React.createElement(
-    "p",
-    null,
-    "I am ",
-    user.age,
-    " years old "
-  ),
-  getLocation(user)
-);
-var appRoot = document.getElementById('app');
+};
 
-ReactDOM.render(template, appRoot);
+// Arrow Function ShortHand Syntax
+var firstNameArrowShortHand = function firstNameArrowShortHand(fullName) {
+  return fullName.split(' ')[0];
+};
+///////////////////
+var fullName = "Asif Mahmud Mofo";
+
+console.log("First Name is " + firstNameArrow(fullName) + " (From Arrow Function)");
+
+console.log("First Name is " + firstNameArrow(fullName) + " (From Arrow Function- ShortHand Notation)");
