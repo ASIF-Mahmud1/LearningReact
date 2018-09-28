@@ -1,39 +1,90 @@
-'use strict';
+"use strict";
 
-// arguments object - no longer bound with arrow functions
+console.log("App is running");
+// JSX - JavaScript XML
 
-var add = function add(a, b) {
-  // console.log(arguments);
-  return a + b;
+var app = {
+  title: "Indecision App ",
+  subtitle: "This is Some Info- Subtitle",
+  options: ["one", "two", "three"]
 };
-console.log(add(55, 1, 1001));
 
-// this keyword - no longer bound
-
+var template = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    "p",
+    null,
+    app.subtitle
+  ),
+  React.createElement(
+    "p",
+    null,
+    app.options.length > 0 ? "Here are your options" : "No Options"
+  ),
+  React.createElement(
+    "ol",
+    null,
+    React.createElement(
+      "li",
+      null,
+      "Item 1"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "Item 2"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "Item 3"
+    )
+  )
+);
 var user = {
-  name: 'Andrew',
-  cities: ['Philadelphia', 'New York', 'Dublin'],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
-  }
+  name: "Monu",
+  age: 100,
+  locat: " NeverLand"
 };
-console.log(user.printPlacesLived());
-
-// Challenge area
-var multiplier = {
-  numbers: [1, 2, 3, 4, 5],
-  multiplyBy: 2,
-  multiply: function multiply() {
-    var _this2 = this;
-
-    return this.numbers.map(function (num) {
-      return num * _this2.multiplyBy;
-    });
+var user2 = {
+  name: "Chonu",
+  age: 19
+  //var name= "Asif Mahmud";
+  // var age= 23;
+  //var locat="Dhaka SA";
+};function getLocation(user) {
+  if (user.locat) {
+    return React.createElement(
+      "p",
+      null,
+      "I am From ",
+      user.locat
+    );
   }
-};
+}
+var template2 = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    user.name ? "My Name is " + user.name : 'I dont know his/her Name'
+  ),
+  user.age > 15 && React.createElement(
+    "p",
+    null,
+    "I am ",
+    user.age,
+    " years old "
+  ),
+  getLocation(user)
+);
+var appRoot = document.getElementById('app');
 
-console.log(multiplier.multiply());
+ReactDOM.render(template, appRoot);
