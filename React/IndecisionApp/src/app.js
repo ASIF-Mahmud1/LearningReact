@@ -4,59 +4,39 @@ console.log(`App is running`);
 const app= {
    title: "Indecision App ",
    subtitle:"This is Some Info- Subtitle" ,
-   options:["one", "two", "three"]
+   options:[]
 };
+///// Form Submit Event
+
+const onFormSubmit= (event)=>{
+   event.preventDefault();
+   console.log(`Add Option is Clicked`);
+   const option= event.target.elements.option.value;
+   console.log(`You wrote ${option}`);
+   // Clear Out Input Field
+   event.target.elements.option.value='';
+   this.app.push(option);
+}
 
  const template= (
    <div>
      <h1>{app.title}</h1>
      {app.subtitle && <p>{app.subtitle}</p>}
      <p>{app.options.length>0 ? "Here are your options" : "No Options"}</p>
+     <p>Size Of Array : {app.options.length}</p>
      <ol>
        <li>Item 1</li>
        <li>Item 2</li>
        <li>Item 3</li>
      </ol>
+
+     <form onSubmit= {onFormSubmit}>
+       <input type= 'text' name ='option' />
+       <button> Add Option</button>
+     </form>
    </div>
  );
 
-let counter =0;
+ const appRoot = document.getElementById('app');
 
-const addOne=()=>{
-counter++;
-console.log('addOne', counter);
-renderPage();
-
-}
-
-const minusOne=()=>{
-  counter--;
-  console.log("minusOne");
-  renderPage();
-}
-
-const reset=()=>{
-  counter=0;
-  console.log('reset');
-  renderPage();
-}
-
-
-
-const appRoot = document.getElementById('app');
-
-const renderPage=()=>
-{
-  const template2=(
-    <div>
-      <h1>Count: {counter}</h1>
-      <button onClick={addOne}> +1 </button>
-      <button onClick={minusOne}> -1 </button>
-      <button onClick={reset}> Reset </button>
-    </div>
-  );
-
-  ReactDOM.render(template2, appRoot);
-}
-
-renderPage();
+  ReactDOM.render(template, appRoot);

@@ -6,7 +6,18 @@ console.log("App is running");
 var app = {
   title: "Indecision App ",
   subtitle: "This is Some Info- Subtitle",
-  options: ["one", "two", "three"]
+  options: []
+};
+///// Form Submit Event
+
+var onFormSubmit = function onFormSubmit(event) {
+  event.preventDefault();
+  console.log("Add Option is Clicked");
+  var option = event.target.elements.option.value;
+  console.log("You wrote " + option);
+  // Clear Out Input Field
+  event.target.elements.option.value = '';
+  undefined.app.push(option);
 };
 
 var template = React.createElement(
@@ -28,6 +39,12 @@ var template = React.createElement(
     app.options.length > 0 ? "Here are your options" : "No Options"
   ),
   React.createElement(
+    "p",
+    null,
+    "Size Of Array : ",
+    app.options.length
+  ),
+  React.createElement(
     "ol",
     null,
     React.createElement(
@@ -45,59 +62,19 @@ var template = React.createElement(
       null,
       "Item 3"
     )
+  ),
+  React.createElement(
+    "form",
+    { onSubmit: onFormSubmit },
+    React.createElement("input", { type: "text", name: "option" }),
+    React.createElement(
+      "button",
+      null,
+      " Add Option"
+    )
   )
 );
 
-var counter = 0;
-
-var addOne = function addOne() {
-  counter++;
-  console.log('addOne', counter);
-  renderPage();
-};
-
-var minusOne = function minusOne() {
-  counter--;
-  console.log("minusOne");
-  renderPage();
-};
-
-var reset = function reset() {
-  counter = 0;
-  console.log('reset');
-  renderPage();
-};
-
 var appRoot = document.getElementById('app');
 
-var renderPage = function renderPage() {
-  var template2 = React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "h1",
-      null,
-      "Count: ",
-      counter
-    ),
-    React.createElement(
-      "button",
-      { onClick: addOne },
-      " +1 "
-    ),
-    React.createElement(
-      "button",
-      { onClick: minusOne },
-      " -1 "
-    ),
-    React.createElement(
-      "button",
-      { onClick: reset },
-      " Reset "
-    )
-  );
-
-  ReactDOM.render(template2, appRoot);
-};
-
-renderPage();
+ReactDOM.render(template, appRoot);
