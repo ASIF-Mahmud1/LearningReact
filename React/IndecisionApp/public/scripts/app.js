@@ -15,66 +15,82 @@ var onFormSubmit = function onFormSubmit(event) {
   console.log("Add Option is Clicked");
   var option = event.target.elements.option.value;
   console.log("You wrote " + option);
-  // Clear Out Input Field
-  event.target.elements.option.value = '';
-  undefined.app.push(option);
+
+  if (option) {
+    event.target.elements.option.value = '';
+    app.options.push(option);
+    renderPage();
+  }
 };
 
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    "p",
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    "p",
-    null,
-    app.options.length > 0 ? "Here are your options" : "No Options"
-  ),
-  React.createElement(
-    "p",
-    null,
-    "Size Of Array : ",
-    app.options.length
-  ),
-  React.createElement(
-    "ol",
+var removeAll = function removeAll() {
+  app.options.length = 0;
+  renderPage();
+};
+
+var renderPage = function renderPage() {
+  var template = React.createElement(
+    "div",
     null,
     React.createElement(
-      "li",
+      "h1",
       null,
-      "Item 1"
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      "p",
+      null,
+      app.subtitle
     ),
     React.createElement(
-      "li",
+      "p",
       null,
-      "Item 2"
+      app.options.length > 0 ? "Here are your options" : "No Options"
     ),
     React.createElement(
-      "li",
+      "p",
       null,
-      "Item 3"
-    )
-  ),
-  React.createElement(
-    "form",
-    { onSubmit: onFormSubmit },
-    React.createElement("input", { type: "text", name: "option" }),
+      "Size Of Array : ",
+      app.options.length
+    ),
     React.createElement(
       "button",
+      { onClick: removeAll },
+      " Remove All"
+    ),
+    React.createElement(
+      "ol",
       null,
-      " Add Option"
+      React.createElement(
+        "li",
+        null,
+        "Item 1"
+      ),
+      React.createElement(
+        "li",
+        null,
+        "Item 2"
+      ),
+      React.createElement(
+        "li",
+        null,
+        "Item 3"
+      )
+    ),
+    React.createElement(
+      "form",
+      { onSubmit: onFormSubmit },
+      React.createElement("input", { type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        " Add Option"
+      )
     )
-  )
-);
+  );
+
+  ReactDOM.render(template, appRoot);
+};
 
 var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+renderPage();
