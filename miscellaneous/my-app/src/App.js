@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect,useState} from 'react';
 
-function App() {
+const Listener = (props) => {
+
+  const handleKeyDown = (event) => {
+    console.log('A key was pressed', event.keyCode);
+  };
+
+  useEffect(()=>{
+    window.addEventListener('keydown',handleKeyDown )    // add listener
+    console.log(' Mounted');
+    return ()=>{
+      console.log('Un-Mounted');
+      window.removeEventListener('keydown', handleKeyDown); //  remove listener
+    }
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <h1>Welcome to the Keydown Listening Component</h1>
     </div>
   );
+};
+// function usePrevious(value) {
+//   const ref = useRef();
+//   useEffect(() => {
+//     ref.current = value;
+//   });
+//   return ref.current;
+// }
+const DataSource=()=>{
+   const [globalState,setGlobalState] = useState(0)
+   
+   const handleGlobalState=(value)=>{
+    const prevCount =globalState 
+     setGlobalState(prevCount+value)
+   }
+
+  return <> 
+           <div>Data Source {globalState }</div>
+           <button onClick={()=>{handleGlobalState(1) }}>Add+</button>
+           <button onClick={()=>{handleGlobalState(-1) }}>Substract-</button>
+           <Listener/>
+        </>
 }
 
-export default App;
+const App=()=>{
+  const [toggle,setToggle]= useState(false)
+
+ 
+  return <> 
+         
+          <button onClick={()=>{setToggle(!toggle)}}>Toggle</button>
+           {toggle &&   <Listener/>}
+         
+    
+    
+        </> 
+}
+
+export default App
