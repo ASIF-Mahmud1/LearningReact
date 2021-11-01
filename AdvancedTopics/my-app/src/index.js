@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from '../src/concepts/App';
+import App from '../src/concepts/higer-order-components/components/social/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
